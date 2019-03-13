@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ProductosCRUD.Models.Producto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Productos</h1>
+
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecioVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                <a asp-action="CreateOrEdit" class="btn btn-success">Producto</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+            </td>
+            <td>
+                <a asp-action="CreateOrEdit" asp-route-id="@item.ProductoId">Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.ProductoId" onclick="return confirm('¿Estás seguro de eliminar est5e producto?')">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
